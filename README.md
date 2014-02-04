@@ -2,7 +2,7 @@
 
 A lightweight jQuery plugin to create single or multiple scratch on images.
 
-#Settings
+### Settings
 
 Available options with notes, the values here are the defaults.
 
@@ -15,7 +15,7 @@ $('#elem').scratchPlugin({
 });
 ```
 
-#Example
+### Example
 
 Include the following file after jQuery
 
