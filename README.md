@@ -8,7 +8,7 @@ Available options with notes, the values here are the defaults.
 
 ```js
 $('#elem').scratchPlugin({
-  revealRadius: 15, // the radius to the cursor circle you make
+  scratchRadius: 15, // the radius to the cursor circle you make
   complete: function ($elem, percentScratched) { // get the current element and the percentage scratched
     // do things
   }
@@ -37,7 +37,7 @@ Then, launch the plugin to each html elems
 
 ```js
 $(".elem").scratchPlugin({
-    revealRadius: 15,
+    scratchRadius: 15,
     complete: function ($elem, percentScratched) {
       // handle example
       if ($elem.hasClass('win')) {

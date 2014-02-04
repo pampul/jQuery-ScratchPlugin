@@ -13,7 +13,7 @@ $(document).ready(function () {
   $("#game").fadeIn();
 
   $(".panel").scratchPlugin({
-    revealRadius: 15,
+    scratchRadius: 15,
     complete: function ($elem, percentScratched) {
       handleScratchEvent($elem, percentScratched);
     }
