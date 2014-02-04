@@ -3,7 +3,7 @@
  */
 
 if (typeof Object.create !== 'function') {
-  ScratchCard.create = function (obj) {
+  ScratchPlugin.create = function (obj) {
     function F() {
     };
     F.prototype = obj;
@@ -12,9 +12,9 @@ if (typeof Object.create !== 'function') {
 }
 
 (function ($, window, document, undefined) {
-  var scratchCardTemplate = $("<canvas class='scratchCanvas' style='display:none'></canvas>");
+  var scratchCanvasTemplate = $("<canvas class='scratchCanvas' style='display:none'></canvas>");
 
-  var ScratchCard = {
+  var ScratchPlugin = {
     init: function (options, elem) {
 
       var self = this;
@@ -23,15 +23,15 @@ if (typeof Object.create !== 'function') {
       self.$elem = $(elem);
 
 
-      self.options = $.extend({}, $.fn.scratchGame.options, options);
-      self.options.backgGroundImage = self.$elem.data("background-image");
+      self.options = $.extend({}, $.fn.scratchPlugin.options, options);
+      self.options.backGroundImage = self.$elem.data("background-image");
       self.options.foreGroundImage = self.$elem.data("foreground-image");
 
       self.loadedImages = 0;
 
       var canvasBgImg = new Image();
       canvasBgImg.onload = function () {
-        self.newScratchCanvas = scratchCardTemplate.clone();
+        self.newScratchCanvas = scratchCanvasTemplate.clone();
         self.$elem.html(self.newScratchCanvas);
         self.theCanvas = self.newScratchCanvas;
 
@@ -63,7 +63,7 @@ if (typeof Object.create !== 'function') {
         self.srcImg = bgImg;
         canvasBgImg.src = self.options.foreGroundImage;
       }
-      bgImg.src = self.options.backgGroundImage;
+      bgImg.src = self.options.backGroundImage;
 
 
     },
@@ -79,9 +79,7 @@ if (typeof Object.create !== 'function') {
 
       var percentage = self.scratchPercentage(self);
 
-      if(percentage > self.options.minPercentage){
-        self.options.complete(self.$elem);
-      }
+      self.options.complete(self.$elem, percentage);
 
     },
     mouseMoveHandler: function (e) {
@@ -126,21 +124,21 @@ if (typeof Object.create !== 'function') {
   }
 
 
-  $.fn.scratchGame = function (options) {
+  $.fn.scratchPlugin = function (options) {
     return this.each(function () {
-      var scratchCard = Object.create(ScratchCard);
-      scratchCard.init(options, this);
+      var scratchPlugin = Object.create(ScratchPlugin);
+      scratchPlugin.init(options, this);
     });
   };
 
   //Defaults
-  $.fn.scratchGame.options = {
+  $.fn.scratchPlugin.options = {
 
     foreGroundImage: null,
-    backgGroundImage: null,
+    backGroundImage: null,
     revealRadius: 15,
-    minPercentage: 50,
-    complete: function($elem){}
+    complete: function ($elem, percentScratched) {
+    }
 
   };
 })(jQuery, window, document);

@@ -10856,7 +10856,7 @@ if (typeof Object.create !== 'function') {
 
 
       self.options = $.extend({}, $.fn.scratchPlugin.options, options);
-      self.options.backgGroundImage = self.$elem.data("background-image");
+      self.options.backGroundImage = self.$elem.data("background-image");
       self.options.foreGroundImage = self.$elem.data("foreground-image");
 
       self.loadedImages = 0;
@@ -10895,7 +10895,7 @@ if (typeof Object.create !== 'function') {
         self.srcImg = bgImg;
         canvasBgImg.src = self.options.foreGroundImage;
       }
-      bgImg.src = self.options.backgGroundImage;
+      bgImg.src = self.options.backGroundImage;
 
 
     },
@@ -10911,9 +10911,7 @@ if (typeof Object.create !== 'function') {
 
       var percentage = self.scratchPercentage(self);
 
-      if(percentage > self.options.minPercentage){
-        self.options.complete(self.$elem);
-      }
+      self.options.complete(self.$elem, percentage);
 
     },
     mouseMoveHandler: function (e) {
@@ -10969,10 +10967,10 @@ if (typeof Object.create !== 'function') {
   $.fn.scratchPlugin.options = {
 
     foreGroundImage: null,
-    backgGroundImage: null,
+    backGroundImage: null,
     revealRadius: 15,
-    minPercentage: 50,
-    complete: function($elem){}
+    complete: function ($elem, percentScratched) {
+    }
 
   };
 })(jQuery, window, document);
@@ -10992,15 +10990,14 @@ $(document).ready(function () {
 
   $(".panel").scratchPlugin({
     revealRadius: 15,
-    minPercentage: 50,
-    complete: function ($elem) {
-      handleScratchEnd($elem);
+    complete: function ($elem, percentScratched) {
+      handleScratchEvent($elem, percentScratched);
     }
   });
 
-  function handleScratchEnd($panel) {
+  function handleScratchEvent($panel, percentScratched) {
 
-    if (!$panel.hasClass('scratching-over')) {
+    if (!$panel.hasClass('scratching-over') && percentScratched > 50) {
       hits.totalHist++;
 
       if ($panel.hasClass('win')) {

@@ -14,15 +14,14 @@ $(document).ready(function () {
 
   $(".panel").scratchPlugin({
     revealRadius: 15,
-    minPercentage: 50,
-    complete: function ($elem) {
-      handleScratchEnd($elem);
+    complete: function ($elem, percentScratched) {
+      handleScratchEvent($elem, percentScratched);
     }
   });
 
-  function handleScratchEnd($panel) {
+  function handleScratchEvent($panel, percentScratched) {
 
-    if (!$panel.hasClass('scratching-over')) {
+    if (!$panel.hasClass('scratching-over') && percentScratched > 50) {
       hits.totalHist++;
 
       if ($panel.hasClass('win')) {
