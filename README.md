@@ -2,6 +2,8 @@
 
 A lightweight jQuery plugin to create single or multiple scratch on images.
 
+* [View the ScratchPlugin demo](http://scratch.florian-mithieux.fr/demo/)
+
 ### Settings
 
 Available options with notes, the values here are the defaults.
