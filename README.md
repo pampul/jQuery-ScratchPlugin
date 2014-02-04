@@ -6,13 +6,40 @@ A lightweight jQuery plugin to create single or multiple scratch on images.
 
 Available options with notes, the values here are the defaults.
 
-```javascript
+```js
 $('#elem').scratchPlugin({
   revealRadius: 15, // the radius to the cursor circle you make
-  minPercentage: 50, // the percentage min to complete a scratch
-  complete: function ($elem) {
+  complete: function ($elem, percentScratched) { // get the current element and the percentage scratched
     // do things
   }
 });
 ```
 
+#Example
+
+Include the following file after jQuery
+
+```js
+<script type="text/javascript" src="./ScratchPlugin.js"></script>
+```
+
+Create an element with data options to define the images you want in foreground and background
+
+```html
+<div class="elem win" id="panel0" data-background-image="public/img/medal.png" data-foreground-image="public/img/box.png"></div>
+<div class="elem win" id="panel0" data-background-image="public/img/medal.png" data-foreground-image="public/img/box.png"></div>
+```
+
+Then, launch the plugin to each html elems
+
+```js
+$(".elem").scratchPlugin({
+    revealRadius: 15,
+    complete: function ($elem, percentScratched) {
+      // handle example
+      if ($elem.hasClass('win')) {
+        alert('You win !');
+      }
+    }
+});
+```
