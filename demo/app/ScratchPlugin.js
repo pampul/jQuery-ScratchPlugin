@@ -5,8 +5,7 @@
 
 if (typeof Object.create !== 'function') {
   ScratchPlugin.create = function (obj) {
-    function F() {
-    };
+    function F() {}
     F.prototype = obj;
     return new F();
   };
@@ -38,7 +37,6 @@ if (typeof Object.create !== 'function') {
 
         self.ctx = self.canvasElem[0].getContext("2d");
 
-
         $(window).bind('mousedown', $.proxy(self.downHandler, self));
         self.canvasElem.bind('mouseup', $.proxy(self.topHandler, self));
         $(window).bind('mouseup', $.proxy(self.topHandler, self));
@@ -52,7 +50,7 @@ if (typeof Object.create !== 'function') {
         self.canvasElem[0].height = canvasForegroundImg.height;
         self.loadedImages++;
 
-        self.canvasElem.css("display", "inline")
+        self.canvasElem.css("display", "inline");
         self.initX = self.canvasElem.offset().left;
         self.initY = self.canvasElem.offset().top;
 
@@ -112,18 +110,17 @@ if (typeof Object.create !== 'function') {
       var pixels = imageData.length;
 
       for (var i = 0, ii = pixels; i < ii; i = i + 4) {
-        if (imageData[i] == 0 &&
-          imageData[i + 1] == 0 &&
-          imageData[i + 2] == 0 &&
-          imageData[i + 3] == 0) {
+        if (imageData[i] === 0 &&
+          imageData[i + 1] === 0 &&
+          imageData[i + 2] === 0 &&
+          imageData[i + 3] === 0) {
           hits++;
         }
       }
 
       return ((pixels - (hits * 4)) / pixels) * 100;
     }
-  }
-
+  };
 
   $.fn.scratchPlugin = function (options) {
     return this.each(function () {
@@ -137,7 +134,6 @@ if (typeof Object.create !== 'function') {
     foreGroundImage: null,
     backGroundImage: null,
     scratchRadius: 15,
-    complete: function ($elem, percentScratched) {
-    }
+    complete: function ($elem, percentScratched) {}
   };
 })(jQuery, window, document);

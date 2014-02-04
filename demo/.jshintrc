@@ -1,5 +1,7 @@
 {
   "globals": {
+    "jQuery": false,
+    "ScratchPlugin": false,
     "module": true,
     "define": true,
     "requirejs": true,
