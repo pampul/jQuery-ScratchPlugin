@@ -51,7 +51,7 @@ module.exports = function (grunt) {
     },
     imagemin: {
       dynamic: {
-        options: {                       // Target options
+        options: { // Target options
           optimizationLevel: 7
         },
         files: [
@@ -72,6 +72,27 @@ module.exports = function (grunt) {
         },
         files: {                                   // Dictionary of files
           'index.html': 'public/views/index.html'
+        }
+      }
+    },
+    jshint: {
+      all: ['app/ScratchPlugin.js'],
+      options: {
+        jshintrc: '.jshintrc'
+      }
+    },
+    jsbeautifier: {
+      modify: {
+        src: ['app/ScratchPlugin.js'],
+        options: {
+          config: '.jsbeautifyrc'
+        }
+      },
+      verify: {
+        src: ['app/ScratchPlugin.js'],
+        options: {
+          mode: 'VERIFY_ONLY',
+          config: '.jsbeautifyrc'
         }
       }
     },
@@ -96,8 +117,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   // Load stylus compiler
   grunt.loadNpmTasks('grunt-contrib-stylus');
-  // html min
-  grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  // Load jshint
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  // Load jsbeautifier
+  grunt.loadNpmTasks('grunt-jsbeautifier');
   // Load a watcher
   grunt.loadNpmTasks('grunt-contrib-watch');
 
@@ -106,5 +129,15 @@ module.exports = function (grunt) {
 
   // Dev task(s).
   grunt.registerTask('dev', ['cssmin', 'concat', 'uglify', 'stylus', 'watch']);
+
+  grunt.registerTask('clean', [
+    'jsbeautifier:modify',
+    'jshint'
+  ]);
+
+  grunt.registerTask('verify', [
+    'jsbeautifier:verify',
+    'jshint'
+  ]);
 
 };
