@@ -29,7 +29,7 @@ Create an element with data options to define the images you want in foreground 
 <div class="elem win" id="elem1" data-background-image="public/img/medal.png"
 data-foreground-image="public/img/box.png"></div>
 
-<div class="elem win" id="elem2" data-background-image="public/img/medal.png"
+<div class="elem lose" id="elem2" data-background-image="public/img/medal.png"
 data-foreground-image="public/img/box.png"></div>
 ```
 
