@@ -1,3 +1,2 @@
-#JS App Boilerplate
+#jQuery Scratch Plugin
 
-A simple Boilerplate for any JS Application
