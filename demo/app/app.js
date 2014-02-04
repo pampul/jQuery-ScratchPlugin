@@ -12,7 +12,7 @@ $(document).ready(function () {
 
   $("#game").fadeIn();
 
-  $(".panel").scratchGame({
+  $(".panel").scratchPlugin({
     revealRadius: 15,
     minPercentage: 50,
     complete: function ($elem) {

@@ -10835,19 +10835,18 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
  */
 
 if (typeof Object.create !== 'function') {
-  ScratchCard.create = function (obj) {
+  ScratchPlugin.create = function (obj) {
     function F() {
     };
     F.prototype = obj;
     return new F();
   };
 }
-var scratchCardId = 0;
-(function ($, window, document, undefined) {
-  var scratchCardTemplate = $("<canvas class='scratchCanvas' style='display:none'></canvas>");
-  var tabScratch = [];
 
-  var ScratchCard = {
+(function ($, window, document, undefined) {
+  var scratchCanvasTemplate = $("<canvas class='scratchCanvas' style='display:none'></canvas>");
+
+  var ScratchPlugin = {
     init: function (options, elem) {
 
       var self = this;
@@ -10856,7 +10855,7 @@ var scratchCardId = 0;
       self.$elem = $(elem);
 
 
-      self.options = $.extend({}, $.fn.scratchGame.options, options);
+      self.options = $.extend({}, $.fn.scratchPlugin.options, options);
       self.options.backgGroundImage = self.$elem.data("background-image");
       self.options.foreGroundImage = self.$elem.data("foreground-image");
 
@@ -10864,7 +10863,7 @@ var scratchCardId = 0;
 
       var canvasBgImg = new Image();
       canvasBgImg.onload = function () {
-        self.newScratchCanvas = scratchCardTemplate.clone();
+        self.newScratchCanvas = scratchCanvasTemplate.clone();
         self.$elem.html(self.newScratchCanvas);
         self.theCanvas = self.newScratchCanvas;
 
@@ -10935,7 +10934,6 @@ var scratchCardId = 0;
     },
     reveal: function (mouseX, mouseY, self) {
       self.ctx.save();
-      // Can't make a true circle, so we make an arced line that happens to trace a circle - 'i' is used to define our radius.
       self.ctx.arc(mouseX, mouseY, self.options.revealRadius, 0, 2 * Math.PI, false);
       self.ctx.clip();
       self.ctx.drawImage(self.srcImg, 0, 0);
@@ -10960,15 +10958,15 @@ var scratchCardId = 0;
   }
 
 
-  $.fn.scratchGame = function (options) {
+  $.fn.scratchPlugin = function (options) {
     return this.each(function () {
-      var scratchCard = Object.create(ScratchCard);
-      scratchCard.init(options, this);
+      var scratchPlugin = Object.create(ScratchPlugin);
+      scratchPlugin.init(options, this);
     });
   };
 
   //Defaults
-  $.fn.scratchGame.options = {
+  $.fn.scratchPlugin.options = {
 
     foreGroundImage: null,
     backgGroundImage: null,
@@ -10992,7 +10990,7 @@ $(document).ready(function () {
 
   $("#game").fadeIn();
 
-  $(".panel").scratchGame({
+  $(".panel").scratchPlugin({
     revealRadius: 15,
     minPercentage: 50,
     complete: function ($elem) {
