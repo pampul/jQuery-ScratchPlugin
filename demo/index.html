@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Scratch Plugin</title>
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="public/css/combine.min.css"/>
+  <!--[if lt IE 9]>
+  <script src="bower_components/bootstrap/assets/js/html5shiv.js"></script>
+  <script src="bower_components/bootstrap/assets/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+
+<div id="main">
+  <div class="container">
+
+    <div class="jumbotron">
+      <h1>Scratch to win</h1>
+    </div>
+
+    <div id="game-container">
+      <div id="game">
+        <div class="panel win" id="panel0" data-background-image="public/img/medal.png"
+             data-foreground-image="public/img/box.png"></div>
+        <div class="panel lose" id="panel1" data-background-image="public/img/medal.png"
+             data-foreground-image="public/img/box.png"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal fade" id="modal-end" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body" id="modal-content">
+        You win !
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="public/js/combine.js"></script>
+
+</body>
+</html>

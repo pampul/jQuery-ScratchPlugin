@@ -1,0 +1,17 @@
+{
+  "name": "AngularJSApp",
+  "version": "0.0.0",
+  "authors": [
+    "Argetloum <florian.mithieux@gmail.com>"
+  ],
+  "description": "Angular JS test App",
+  "main": "app.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
