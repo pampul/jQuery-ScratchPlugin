@@ -4,8 +4,7 @@ A lightweight jQuery plugin to create single or multiple scratch on images.
 
 * [View the ScratchPlugin demo](http://scratch.florian-mithieux.fr/demo/)
 
-
-- Don't use external images, the canvas can't work with that
+Don't use external images, the canvas can't work with that
 
 ### Settings
 
